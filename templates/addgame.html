@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FameGame-Add Game</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/templatemo-style.css')}}">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+                <i class="fas fa-film mr-2"></i>
+                FameGame
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                {% if username == None%}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="login.html">Login</a>
+                </li>
+                {% elif usertype==True %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="/logout">{{username}}(Logout)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="/addgame">Add Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="/mygames">My Games</a>
+                </li>                
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="/logout">{{username}}(Logout)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="/mygames">My Games</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-3" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+<div><br></div>
+<div class="container tm-container-small">
+    <form id="contact-form" action="/addgame/success" method="POST" class="tm-contact-form mx-auto">
+    <h2 class="tm-text-primary mb-5">Add Game</h2>
+        {% for message in get_flashed_messages() %}
+            <div class="form-input">{{ message }}</div>
+        {% endfor %}
+                    <div class="form-group">
+                        <label>Game Name</label>
+                        <input type="text" name="game_name" class="form-control rounded-0" placeholder="Game Name" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Game Description</label>
+                        <textarea rows="6" name="description" class="form-control rounded-0" placeholder="Game Description" required=></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Release</label>
+                        <input type="date" name="date_of_release" class="form-control rounded-0" placeholder="DD/MM/YYYY" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Game Size (GB)</label>
+                        <input type="text" name="game_size" class="form-control rounded-0" placeholder="Game Size" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Production Studio</label>
+                        <input type="text" name="prod_studio" class="form-control rounded-0" placeholder="Production Studion" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>MRP (Rs)</label>
+                        <input type="number" name="mrp" min="0" step=".01" class="form-control rounded-0" placeholder="Price" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Version</label>
+                        <input type="text" name="curr_version" class="form-control rounded-0" placeholder="Game Version" autocomplete="off" required />
+                    </div>
+                                        
+                    <div class="form-group">
+                        <label>Game Link</label>
+                        <input type="text" name="game_link" class="form-control rounded-0" placeholder="Game Link" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cover Image (link)</label>
+                        <input type="text" name="image" class="form-control rounded-0" placeholder="Image Link" autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type = "text" name="category" class="form-control rounded-0" placeholder="Categories (',' separated)" autocomplete="off" required/>
+                    </div>
+                    
+                    <div class="form-group tm-text-right">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>       
+</div>
+<div><br></div>
+
+
+    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+        <div class="container-fluid tm-container-small">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                    <h3 class="tm-text-primary mb-4 tm-footer-title">About FameGame</h3>
+                    <p>FameGame is an online game selling marketplace where game developers can enlist and sell their games to the gamers.</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
+                    Copyright 2020 FameGame. All rights reserved.
+                </div>
+                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
+                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored" target="_parent">FameGame</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>
