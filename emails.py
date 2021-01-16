@@ -6,7 +6,7 @@ from email import encoders
    
 
 def sendMail(reciever_address, contactDetails=None):
-	fromaddr = "famegamecorp2020@gmail.com"
+	fromaddr = ""
 	toaddr = reciever_address
 	try:   
 		if contactDetails == None:
@@ -20,7 +20,7 @@ def sendMail(reciever_address, contactDetails=None):
 			  
 			s = smtplib.SMTP('smtp.gmail.com', 587) 
 			s.starttls()
-			s.login(fromaddr, "yowxmvaacpolqakj")
+			s.login(fromaddr, "")
 			text = msg.as_string() 
 			s.sendmail(fromaddr, toaddr, text) 
 			s.quit()
@@ -35,7 +35,7 @@ def sendMail(reciever_address, contactDetails=None):
 			msg.attach(MIMEText(body, 'plain')) 
 			s = smtplib.SMTP('smtp.gmail.com', 587) 
 			s.starttls()
-			s.login(fromaddr, "yowxmvaacpolqakj")
+			s.login(fromaddr, "")
 			text = msg.as_string() 
 			s.sendmail(fromaddr, toaddr, text) 
 			s.quit()
@@ -48,4 +48,4 @@ def sendMail(reciever_address, contactDetails=None):
 	return 200, "mail sent"
 
 if __name__ == "__main__":
-	sendMail('famegamecorp2020@gmail.com')
+	sendMail('')
