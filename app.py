@@ -275,4 +275,4 @@ def updatePage(game_name):
 		return render_template("update.html",username=username,usertype=usertype, gameName=gameName)
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=False, host="0.0.0.0")
